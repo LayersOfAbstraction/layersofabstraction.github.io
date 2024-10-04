@@ -62,10 +62,41 @@
 						<article>
 							{% include navigation.html %}
 							{{ content }}
+							<ul class="pagination_list">
+								{% for post in paginator.posts %}
+								  <li>
+									<span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+								
+									<h2>
+									<a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+									</h2>
+								  </li>
+								{% endfor %}
+								</ul>	
+							</ul>
+							<!-- 
+								Showing buttons to move to the next and to the previous list of posts (pager buttons).
+							-->
+							{% if paginator.total_pages > 1 %}
+							<ul class="pager">
+								{% if paginator.previous_page %}
+								<li class="previous">
+									<a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
+								</li>
+								{% endif %}
+								{% if paginator.next_page %}
+								<li class="next">
+									<a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+								</li>
+								{% endif %}
+							</ul>
+							{% endif %}
 						</article>	
-						</section>								
+						</section>	
+						
 					</div>
 				</div>
+
         				<!-- Footer -->
 					<footer id="footer">						
 						<section class="split contact">							
