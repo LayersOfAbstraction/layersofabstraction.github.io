@@ -56,7 +56,26 @@
 # kramdown:  
 #   parse_block_html: true
   
-permalink: /:title
+# gems:
+#   - jekyll-paginate-v2
+
+# group: jekyll_plugins do
+#   gem "jekyll-paginate-v2"
+#   gem "jekyll-feed" end
+
+# # Pagination Settings
+# pagination:
+#   enabled: true
+#   per_page: 3
+#   permalink: '/page/:num/'
+#   title: ' - page :num'
+#   limit: 0
+#   sort_field: 'date'
+#   sort_reverse: true
+
+
+# Produces a cleaner folder structure when using categories
+permalink: /:year/:month/:title.html
 defaults:      
   - scope:
       path: ""
