@@ -8,4 +8,4 @@ gem "webrick", "~> 1.7"
 gem "rexml"
 gem "strscan"
 gem "ffi"
-gem "jekyll-paginate-v2"
+gem 'jekyll-paginate-v2', github: 'sverrirs/jekyll-paginate-v2'

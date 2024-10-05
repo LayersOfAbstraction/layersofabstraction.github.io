@@ -1,49 +1,33 @@
 ---
 layout: default
 title: Blog
-pagination: 
+pagination:
   enabled: true
+  collection: posts
+permalink: /blog/
 ---
 <h1>Blogs</h1>
 
 <ul>
-  {% for post in site.posts %}
-    <li>
-      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-<!-- Whether or not to display the "read more" button -->
-{{ post.content | strip_html | truncatewords: 50 }}
-     </br>
-      <button><a href="{{ post.url }}">Check it out</button>
-    </li>
-  </br>
-  {% endfor %}
-</ul>
-<ul class="pagination_list">
   {% for post in paginator.posts %}
     <li>
-    <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-  
-    <h2>
-    <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-    </h2>
+      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+      {{ post.content | strip_html | truncatewords: 50 }}
+      </br>
+      <button><a href="{{ post.url }}">Check it out</a></button>
     </li>
+    </br>
   {% endfor %}
-  </ul>	
 </ul>
-<!-- 
-  Showing buttons to move to the next and to the previous list of posts (pager buttons).
--->
-{% if paginator.total_pages > 1 %}
-<ul class="pager">
+
+<div class="pagination">
   {% if paginator.previous_page %}
-  <li class="previous">
-    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
-  </li>
+    <a href="{{ paginator.previous_page_path }}" class="previous">Previous</a>
   {% endif %}
+  {% for page in (1..paginator.total_pages) %}
+    <a href="{{ paginator.page_path | replace: ':num', page }}" class="{% if page == paginator.page %}current{% endif %}">{{ page }}</a>
+  {% endfor %}
   {% if paginator.next_page %}
-  <li class="next">
-    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
-  </li>
+    <a href="{{ paginator.next_page_path }}" class="next">Next</a>
   {% endif %}
-</ul>
-{% endif %}
+</div>

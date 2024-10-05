@@ -56,23 +56,16 @@
 # kramdown:  
 #   parse_block_html: true
   
-gems:
+plugins:
   - jekyll-paginate-v2
-exclude:
-  - Gemfile
-  - Gemfile.lock
-# Pagination Settings
 pagination:
   enabled: true
   per_page: 3
-  offset: 2
-  permalink: '/page/:num/'
+  permalink: '/blog/page/:num/'
   title: ':title - page :num of :max'
-  limit: 0
   sort_field: 'date'
   sort_reverse: true
 
-# Produces a cleaner folder structure when using categories
 permalink: /:title
 defaults:      
   - scope:
